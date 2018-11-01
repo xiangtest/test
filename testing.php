@@ -1,5 +1,9 @@
 <?php
-class Rectangle
+interface AreaInterface
+{
+    public  function calculateArea();
+}
+class Rectangle implements AreaInterface
 {
     public $width;
     public $height;
@@ -8,30 +12,34 @@ class Rectangle
         $this->width = $width;
         $this->height = $height;
     }
+    public  function calculateArea(){
+        $area = $this->height *  $this->width;
+        return $area;
+    }
 }
-class Circle
+  
+class Circle implements  AreaInterface
 {
-    public $radius;
+    public  $radius;
     public function __construct($radius)
     {
         $this->radius = $radius;
     }
+    
+    public  function calculateArea(){
+        $area = $this->radius * $this->radius * pi();
+        return $area;
+    }
 }
 class CostManager
 {
-    public function calculate($shape)
+    public function calculate(AreaInterface $shape)
     {
         $costPerUnit = 1.5;
-        if ($shape instanceof Rectangle) {
-            $area = $shape->width * $shape->height;
-        } else {
-            $area = $shape->radius * $shape->radius * pi();
-        }
-        
-        return $costPerUnit * $area;
+        $totalCost = $costPerUnit * $shape->calculateArea();
+        return $totalCost;
     }
 }
 $circle = new Circle(5);
-$rect = new Rectangle(8,5);
 $obj = new CostManager();
 echo $obj->calculate($circle);
