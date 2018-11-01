@@ -1,45 +1,54 @@
 <?php
-interface AreaInterface
+class Notification
 {
-    public  function calculateArea();
-}
-class Rectangle implements AreaInterface
-{
-    public $width;
-    public $height;
-    public function __construct($width, $height)
+    private $message;
+
+    public function __construct($message)
     {
-        $this->width = $width;
-        $this->height = $height;
+        $this->message = $message;
     }
-    public  function calculateArea(){
-        $area = $this->height *  $this->width;
-        return $area;
-    }
-}
-  
-class Circle implements  AreaInterface
-{
-    public  $radius;
-    public function __construct($radius)
+
+    public function message()
     {
-        $this->radius = $radius;
-    }
-    
-    public  function calculateArea(){
-        $area = $this->radius * $this->radius * pi();
-        return $area;
+        return $this->message;
     }
 }
-class CostManager
+
+interface Notifier
 {
-    public function calculate(AreaInterface $shape)
+    public function send($to);
+}
+
+
+
+
+
+class EmailNotifier implements Notifier
+{
+    private $notification;
+
+    public function __construct(Notification $notification)
     {
-        $costPerUnit = 1.5;
-        $totalCost = $costPerUnit * $shape->calculateArea();
-        return $totalCost;
+        $this->notification = $notification;
+    }
+
+    public function send($to)
+    {
+        // Email Logic Here
     }
 }
-$circle = new Circle(5);
-$obj = new CostManager();
-echo $obj->calculate($circle);
+
+class SMSNotifier implements Notifier
+{
+    private $notification;
+
+    public function __construct(Notification $notification)
+    {
+        $this->notification = $notification;
+    }
+
+    public function send($to)
+    {
+        // SMS Logic Here
+    }
+}
