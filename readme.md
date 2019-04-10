@@ -1,2 +1,6 @@
-# Testing repo
-- do whatever you want to do testing for Pythia project
++---------------------+------------+
+| File Changed        | Bug Ticket |
++---------------------+------------+
+| lumen/composer.json | 1055572    |
+| lumen/composer.lock | 1055572    |
++---------------------+------------+
