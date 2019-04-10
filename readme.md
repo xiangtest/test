@@ -1,4 +1,4 @@
-## Files associated with bugs <br>
+## Files associated with bugs
         ```
         anytest
         ```
