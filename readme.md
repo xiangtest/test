@@ -1,4 +1,9 @@
 ## Files associated with bugs
 ```
-anytest
++---------------------+------------+
+| File Changed        | Bug Ticket |
++---------------------+------------+
+| lumen/composer.json | 1055572    |
+| lumen/composer.lock | 1055572    |
++---------------------+------------+
 ```
